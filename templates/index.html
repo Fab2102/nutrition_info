@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wein Nährwerttabelle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">Nährwertinformationen</h1>
+
+        <div class="form-group">
+            <label for="wineSelect">Wählen Sie einen Wein:</label>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <select class="custom-select" id="wineSelect">
+                        <option value="GV_HB">Grüner Veltliner Hohenberg</option>
+                        <option value="GV_STB">Grüner Veltliner Steinberg</option>
+                        <option value="GV_MT">Grüner Veltliner Marienthal</option>
+                        <option value="GV_AR">Grüner Veltliner Alte Rebe</option>
+                        <option value="GM">Gelber Muskateller</option>
+                        <option value="RR">Riesling Sand u. Schotter</option>
+                        <option value="WB">Weißburgunder</option>
+                        <option value="RV_STB">Roter Veltliner Steinberg</option>
+                        <option value="ZW_ROSE">Zweigelt Rosé</option>
+                        <option value="ZW_C">Zweigelt Classic</option>
+                        <option value="ZW_RE">Zweigelt Reserve</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 mb-4">
+            <p class="mt-5"><b>Zutaten:</b> Trauben; Säureregulaoren: E334, E296; Antioxidantien: <b>E224</b>; Stabilisatoren: E353 </p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nährwertangaben</th>
+                        <th>pro 100ml</th>
+                    </tr>
+                </thead>
+                <tbody id="wineTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#wineSelect').change(function() {
+                var wineName = $(this).val();
+                $.ajax({
+                    url: '/get_data/' + wineName,
+                    method: 'GET',
+                    success: function(data) {
+                        var tableContent = '';
+                        $.each(data, function(index, item) {
+                            tableContent += '<tr><td>' + item[0] + '</td><td>' + item[1] + '</td></tr>';
+                        });
+                        $('#wineTable').html(tableContent);
+                    }
+                });
+            });
+            $('#wineSelect').trigger('change');
+        });
+    </script>
+</body>
+</html>

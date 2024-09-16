@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Optimistic Display';
+    src: url('fonts/optimistic-display.woff2') format('woff2'),
+         url('fonts/optimistic-display.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Optimistic Display', sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1 {
+    font-family: 'Optimistic Display', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: #333;
+    margin-top: 3rem;
+    margin-bottom: 15rem;
+}
+
+.custom-select {
+    border-radius: .50rem;
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+    box-shadow: 0 0 .125rem rgba(0, 0, 0, .075);
+}
+
+.custom-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 .125rem rgba(38, 143, 255, .25);
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #343a40;
+    color: white;
+    z-index: 1;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table td, .table th {
+    padding: 1rem;
+}
